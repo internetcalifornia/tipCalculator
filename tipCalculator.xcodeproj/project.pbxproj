@@ -14,6 +14,10 @@
 		2DA655D61F1FFD69004684F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DA655D41F1FFD69004684F8 /* LaunchScreen.storyboard */; };
 		2DA655DE1F200C4F004684F8 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA655DD1F200C4F004684F8 /* Friend.swift */; };
 		2DA655E01F200F91004684F8 /* PartyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA655DF1F200F91004684F8 /* PartyViewController.swift */; };
+		2DB3A2901F20419B008ADBBB /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB3A28F1F20419B008ADBBB /* SettingViewController.swift */; };
+		2DB3A2921F2043A0008ADBBB /* LocalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB3A2911F2043A0008ADBBB /* LocalSettings.swift */; };
+		2DB3A2941F207772008ADBBB /* TipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB3A2931F207772008ADBBB /* TipViewController.swift */; };
+		2DBC4FA21F2150B100D26995 /* Bill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBC4FA11F2150B100D26995 /* Bill.swift */; };
 		2DC6E4941F20292400FCD564 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC6E4931F20292400FCD564 /* FriendTableViewCell.swift */; };
 		2DC6E4961F202C6A00FCD564 /* FriendDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC6E4951F202C6A00FCD564 /* FriendDetailViewController.swift */; };
 		2DC6E4981F202CDE00FCD564 /* TipCalculatorNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC6E4971F202CDE00FCD564 /* TipCalculatorNavigationController.swift */; };
@@ -29,6 +33,10 @@
 		2DA655D71F1FFD69004684F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2DA655DD1F200C4F004684F8 /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		2DA655DF1F200F91004684F8 /* PartyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyViewController.swift; sourceTree = "<group>"; };
+		2DB3A28F1F20419B008ADBBB /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		2DB3A2911F2043A0008ADBBB /* LocalSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSettings.swift; sourceTree = "<group>"; };
+		2DB3A2931F207772008ADBBB /* TipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipViewController.swift; sourceTree = "<group>"; };
+		2DBC4FA11F2150B100D26995 /* Bill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bill.swift; sourceTree = "<group>"; };
 		2DC6E4931F20292400FCD564 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		2DC6E4951F202C6A00FCD564 /* FriendDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailViewController.swift; sourceTree = "<group>"; };
 		2DC6E4971F202CDE00FCD564 /* TipCalculatorNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipCalculatorNavigationController.swift; sourceTree = "<group>"; };
@@ -68,6 +76,10 @@
 				2DA655CB1F1FFD68004684F8 /* AppDelegate.swift */,
 				2DA655CD1F1FFD69004684F8 /* BillViewController.swift */,
 				2DA655CF1F1FFD69004684F8 /* Main.storyboard */,
+				2DBC4FA11F2150B100D26995 /* Bill.swift */,
+				2DB3A2931F207772008ADBBB /* TipViewController.swift */,
+				2DB3A28F1F20419B008ADBBB /* SettingViewController.swift */,
+				2DB3A2911F2043A0008ADBBB /* LocalSettings.swift */,
 				2DC6E4951F202C6A00FCD564 /* FriendDetailViewController.swift */,
 				2DC6E4931F20292400FCD564 /* FriendTableViewCell.swift */,
 				2DA655DF1F200F91004684F8 /* PartyViewController.swift */,
@@ -151,12 +163,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DA655DE1F200C4F004684F8 /* Friend.swift in Sources */,
+				2DBC4FA21F2150B100D26995 /* Bill.swift in Sources */,
 				2DA655CE1F1FFD69004684F8 /* BillViewController.swift in Sources */,
 				2DC6E4961F202C6A00FCD564 /* FriendDetailViewController.swift in Sources */,
+				2DB3A2901F20419B008ADBBB /* SettingViewController.swift in Sources */,
 				2DC6E4981F202CDE00FCD564 /* TipCalculatorNavigationController.swift in Sources */,
 				2DC6E4941F20292400FCD564 /* FriendTableViewCell.swift in Sources */,
 				2DA655CC1F1FFD68004684F8 /* AppDelegate.swift in Sources */,
 				2DA655E01F200F91004684F8 /* PartyViewController.swift in Sources */,
+				2DB3A2941F207772008ADBBB /* TipViewController.swift in Sources */,
+				2DB3A2921F2043A0008ADBBB /* LocalSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

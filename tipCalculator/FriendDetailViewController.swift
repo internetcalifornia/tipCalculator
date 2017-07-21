@@ -9,6 +9,8 @@
 import UIKit
 
 class FriendDetailViewController: UIViewController, UINavigationControllerDelegate {
+    
+    var friendIndex: IndexPath?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +24,7 @@ class FriendDetailViewController: UIViewController, UINavigationControllerDelega
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        dump(self.navigationItem)
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {

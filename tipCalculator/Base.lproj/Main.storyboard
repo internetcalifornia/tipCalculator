@@ -21,16 +21,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hay-vP-XZW">
-                                <rect key="frame" x="0.0" y="64" width="375" height="270"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="320"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="270" id="p5E-9Z-j3K"/>
+                                    <constraint firstAttribute="height" constant="320" id="p5E-9Z-j3K"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="psi-hA-ivD" kind="embed" id="x7m-sW-BhP"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YM4-gq-87u">
-                                <rect key="frame" x="0.0" y="332" width="375" height="335"/>
+                                <rect key="frame" x="0.0" y="384" width="375" height="283"/>
                                 <connections>
                                     <segue destination="9O9-o7-Qg1" kind="embed" id="E2D-NK-lj0"/>
                                 </connections>
@@ -43,7 +43,7 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="YM4-gq-87u" secondAttribute="bottom" id="EF8-n1-akS"/>
                             <constraint firstItem="Hay-vP-XZW" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="QFj-KK-GG6"/>
                             <constraint firstItem="Hay-vP-XZW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RQt-yx-TpI"/>
-                            <constraint firstItem="YM4-gq-87u" firstAttribute="top" secondItem="Hay-vP-XZW" secondAttribute="bottom" constant="-2" id="hGJ-uY-WPV"/>
+                            <constraint firstItem="YM4-gq-87u" firstAttribute="top" secondItem="Hay-vP-XZW" secondAttribute="bottom" id="hGJ-uY-WPV"/>
                             <constraint firstItem="YM4-gq-87u" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iie-Dz-ojU"/>
                             <constraint firstItem="Hay-vP-XZW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="uF2-FY-hSR"/>
                             <constraint firstAttribute="trailing" secondItem="YM4-gq-87u" secondAttribute="trailing" id="y3f-5f-Z85"/>
@@ -52,7 +52,7 @@
                     <navigationItem key="navigationItem" title="Bill" id="A7e-u3-YHh">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="cg9-JQ-v4p">
                             <connections>
-                                <segue destination="FS6-k3-nYC" kind="show" id="KAM-5F-wqP"/>
+                                <segue destination="FS6-k3-nYC" kind="show" id="2DW-za-Ep9"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -64,13 +64,13 @@
         <!--Tipping-->
         <scene sceneID="TYG-2F-OsN">
             <objects>
-                <viewController title="Tipping" id="psi-hA-ivD" sceneMemberID="viewController">
+                <viewController title="Tipping" id="psi-hA-ivD" customClass="TipViewController" customModule="tipCalculator" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FYM-7H-he0"/>
                         <viewControllerLayoutGuide type="bottom" id="EuY-Yi-v1O"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="a0N-wk-qsA">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bill Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XfV-Oi-irV">
@@ -92,11 +92,15 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="MDY-Fc-LVz">
-                                <rect key="frame" x="155" y="168" width="65" height="29"/>
+                                <rect key="frame" x="137" y="168" width="101" height="29"/>
                                 <segments>
                                     <segment title="1%"/>
                                     <segment title="2%"/>
+                                    <segment title="3%"/>
                                 </segments>
+                                <connections>
+                                    <action selector="tipPercentageChanged:" destination="psi-hA-ivD" eventType="valueChanged" id="l7C-6X-dWP"/>
+                                </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$tip" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBJ-6S-bMh">
                                 <rect key="frame" x="328.5" y="139" width="30.5" height="21"/>
@@ -115,11 +119,22 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="billAmountChanged:" destination="psi-hA-ivD" eventType="valueChanged" id="Kwp-Ym-87q"/>
+                                    <action selector="billAmountChanged:" destination="psi-hA-ivD" eventType="editingDidBegin" id="nfm-hx-9Wn"/>
+                                </connections>
                             </textField>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="WaC-Ba-7c0">
+                                <rect key="frame" x="265" y="271" width="94" height="29"/>
+                                <connections>
+                                    <action selector="adjustPartySize:" destination="psi-hA-ivD" eventType="valueChanged" id="DEV-NA-tNs"/>
+                                </connections>
+                            </stepper>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="MDY-Fc-LVz" firstAttribute="centerX" secondItem="a0N-wk-qsA" secondAttribute="centerX" id="C58-UT-czP"/>
+                            <constraint firstItem="EuY-Yi-v1O" firstAttribute="top" secondItem="WaC-Ba-7c0" secondAttribute="bottom" constant="20" id="C8Y-5V-RU2"/>
                             <constraint firstItem="pYK-IB-deL" firstAttribute="centerY" secondItem="O6x-Cw-bD7" secondAttribute="centerY" id="KT6-Gl-vbO"/>
                             <constraint firstItem="pYK-IB-deL" firstAttribute="trailing" secondItem="MBJ-6S-bMh" secondAttribute="trailing" id="KaC-kk-0c1"/>
                             <constraint firstItem="O6x-Cw-bD7" firstAttribute="top" secondItem="MDY-Fc-LVz" secondAttribute="bottom" constant="43" id="PnT-NL-RYG"/>
@@ -136,8 +151,16 @@
                             <constraint firstItem="MBJ-6S-bMh" firstAttribute="trailing" secondItem="khJ-Zr-Ica" secondAttribute="trailing" id="puw-AQ-2ME"/>
                             <constraint firstItem="XfV-Oi-irV" firstAttribute="top" secondItem="a0N-wk-qsA" secondAttribute="top" constant="36" id="tWv-XH-g5r"/>
                             <constraint firstItem="O6x-Cw-bD7" firstAttribute="leading" secondItem="a16-dg-MHJ" secondAttribute="leading" id="zOH-Jn-5Ca"/>
+                            <constraint firstAttribute="trailing" secondItem="WaC-Ba-7c0" secondAttribute="trailing" constant="16" id="zwW-dk-0W9"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="billAmountField" destination="khJ-Zr-Ica" id="noQ-zK-wqL"/>
+                        <outlet property="partySizeStepper" destination="WaC-Ba-7c0" id="OzC-03-hzS"/>
+                        <outlet property="tipSegmentedControl" destination="MDY-Fc-LVz" id="Lat-Yw-fhr"/>
+                        <outlet property="tipTotalAmountLabel" destination="MBJ-6S-bMh" id="EJS-Kc-sk5"/>
+                        <outlet property="totalAmountDueLabel" destination="pYK-IB-deL" id="NXL-Vk-mF4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OVb-Dz-Tzy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -146,7 +169,7 @@
         <!--Settings-->
         <scene sceneID="yVU-mj-Obg">
             <objects>
-                <viewController title="Settings" id="FS6-k3-nYC" sceneMemberID="viewController">
+                <viewController title="Settings" id="FS6-k3-nYC" customClass="SettingViewController" customModule="tipCalculator" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RAV-ge-9AP"/>
                         <viewControllerLayoutGuide type="bottom" id="tOU-ho-1yr"/>
@@ -173,30 +196,33 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZCs-VM-FCf">
-                                <rect key="frame" x="176" y="139.5" width="177" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="%" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZCs-VM-FCf">
+                                <rect key="frame" x="176" y="146" width="177" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="177" id="sig-rg-8Tf"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="esz-wO-Qwh">
-                                <rect key="frame" x="176" y="175.5" width="177" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="%" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="esz-wO-Qwh">
+                                <rect key="frame" x="176" y="182" width="177" height="17"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zb4-CW-XaL">
-                                <rect key="frame" x="176" y="212" width="177" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="%" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zb4-CW-XaL">
+                                <rect key="frame" x="176" y="218.5" width="177" height="17"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U1d-Jb-jCH">
-                                <rect key="frame" x="302" y="256" width="51" height="30"/>
+                                <rect key="frame" x="302" y="249.5" width="51" height="30"/>
                                 <state key="normal" title="Update"/>
+                                <connections>
+                                    <action selector="updateTipPercentages:" destination="FS6-k3-nYC" eventType="touchUpInside" id="apC-xF-3z6"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khj-vK-NVR">
                                 <rect key="frame" x="16" y="144" width="33.5" height="21"/>
@@ -227,6 +253,11 @@
                             <constraint firstItem="esz-wO-Qwh" firstAttribute="width" secondItem="ZCs-VM-FCf" secondAttribute="width" id="vnz-z0-2mG"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="firstTipPercentage" destination="ZCs-VM-FCf" id="EXr-Cb-URA"/>
+                        <outlet property="secondTipPercentage" destination="esz-wO-Qwh" id="qiw-tM-Nf5"/>
+                        <outlet property="thirdTipPercentage" destination="zb4-CW-XaL" id="9C5-ap-b7L"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dH8-Jf-d9q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -241,11 +272,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Lkm-kR-Qnu"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yDh-1U-XZE">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="335"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="283"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="wi3-Ca-GzZ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="335"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="283"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendCell" id="Z9S-u9-YXv" customClass="FriendTableViewCell" customModule="tipCalculator" customModuleProvider="target">
@@ -317,7 +348,7 @@
                         <viewControllerLayoutGuide type="bottom" id="L8f-CH-ykO"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fBo-nv-t93">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="335"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="283"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVx-11-JoQ">

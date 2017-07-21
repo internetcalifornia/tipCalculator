@@ -8,9 +8,10 @@
 
 import UIKit
 
-class PartyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PartyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate {
     
     
+    var partySize: Int?
     
 
     @IBOutlet weak var partyTableView: UITableView!
@@ -39,18 +40,21 @@ class PartyViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 print("didn't work")
                 return
             }
-            vc.navigationItem.title = "Something else"
-            vc.navigationItem.backBarButtonItem = UIBarButtonItem(title: "back 2.0", style: .plain, target: nil, action: nil)
+            // setting the title to friend will update later if a friend is found
+            vc.navigationItem.title = "Friend"
+            // set the index to the correct row so we know which friend's data to load
+            vc.friendIndex = partyTableView.indexPathForSelectedRow
             
         }
     }
  
     
     
+    
     // MARK: Table Setup
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return partySize ?? 0
     }
     
     
