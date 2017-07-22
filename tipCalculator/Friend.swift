@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import CoreData
 // MARK: Friend
 /// A class of Friend
 class Friend: NSObject, NSCoding {
@@ -15,6 +15,7 @@ class Friend: NSObject, NSCoding {
     
     required convenience init?(coder aDecoder: NSCoder) {
         guard let firstName = aDecoder.decodeObject(forKey: "firstName") as? String, let lastName = aDecoder.decodeObject(forKey: "lastName") as? String else {
+            print("failed to init")
             return nil
         }
         guard let phoneNumber = aDecoder.decodeObject(forKey: "phoneNumber") as? String else {
@@ -47,5 +48,43 @@ class Friend: NSObject, NSCoding {
         aCoder.encode(lastName, forKey: "lastName")
         aCoder.encode(phoneNumber, forKey: "phoneNumber")
     }
+    
+    class func loadFriendData(friendIndex index: IndexPath?) -> Friend? {
+        print("this is index optional value: \(index)")
+        guard let key = index else {
+            print("key not available")
+            return nil
+        }
+        let keyValue = String(describing: key)
+        print("this is key value: \(keyValue)")
+        guard let data = LocalSettings.loadDataSetting(forKey: keyValue) else {
+            return nil
+        }
+        let friend = NSKeyedUnarchiver.unarchiveObject(with: data) as? Friend
+        return friend
+        
+    }
+    
+    class func saveFriendData(forIndex index: IndexPath?, firstName: String?, lastName: String?, phoneNumber: String?) {
+        guard let key = index else {
+            print("could not save friend, index not available")
+            return
+        }
+        let keyValue = String(describing: key)
+        print(keyValue)
+        guard let firstName = firstName, let lastName = lastName else {
+            return
+        }
+        guard let phoneNumber = phoneNumber else {
+            let friendObject = Friend(firstName: firstName, lastName: lastName)
+            LocalSettings.encodeAndSave(forKey: keyValue, object: friendObject)
+            return
+        }
+        let friend = Friend(firstName: firstName, lastName: lastName, phoneNumber: phoneNumber)
+        LocalSettings.encodeAndSave(forKey: keyValue, object: friend)
+        return
+    }
 }
+
+
 

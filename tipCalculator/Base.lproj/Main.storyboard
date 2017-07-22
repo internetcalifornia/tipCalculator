@@ -118,10 +118,9 @@
                                 <rect key="frame" x="154" y="30" width="205" height="32"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="billAmountChanged:" destination="psi-hA-ivD" eventType="valueChanged" id="Kwp-Ym-87q"/>
-                                    <action selector="billAmountChanged:" destination="psi-hA-ivD" eventType="editingDidBegin" id="nfm-hx-9Wn"/>
+                                    <action selector="billAmountChanged:" destination="psi-hA-ivD" eventType="editingChanged" id="VOo-fC-Y9Q"/>
                                 </connections>
                             </textField>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="WaC-Ba-7c0">
@@ -299,10 +298,18 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fnT-B1-gTq">
+                                                    <rect key="frame" x="180" y="11" width="45" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="Qsp-Sv-AOr" firstAttribute="leading" secondItem="fnT-B1-gTq" secondAttribute="trailing" constant="8" id="3N6-nn-bd3"/>
+                                                <constraint firstItem="fnT-B1-gTq" firstAttribute="centerY" secondItem="xTV-pv-hL1" secondAttribute="centerY" id="3aR-WX-fd0"/>
                                                 <constraint firstItem="xTV-pv-hL1" firstAttribute="centerY" secondItem="plw-nc-Nof" secondAttribute="centerY" id="6IU-Mz-LMF"/>
-                                                <constraint firstItem="Qsp-Sv-AOr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xTV-pv-hL1" secondAttribute="trailing" constant="10" id="QtF-nP-7Ce"/>
+                                                <constraint firstItem="fnT-B1-gTq" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xTV-pv-hL1" secondAttribute="trailing" constant="30" id="DbD-kZ-sPb"/>
                                                 <constraint firstAttribute="trailing" secondItem="Qsp-Sv-AOr" secondAttribute="trailing" constant="8" id="Wpm-Zl-Ka5"/>
                                                 <constraint firstItem="xTV-pv-hL1" firstAttribute="leading" secondItem="plw-nc-Nof" secondAttribute="leading" constant="18" id="eYC-KN-tSz"/>
                                                 <constraint firstItem="Qsp-Sv-AOr" firstAttribute="top" secondItem="plw-nc-Nof" secondAttribute="top" constant="6" id="keM-Ro-wIA"/>
@@ -310,6 +317,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="friendLabel" destination="xTV-pv-hL1" id="uHu-4Q-vT2"/>
+                                            <outlet property="friendTipLabel" destination="fnT-B1-gTq" id="bbl-zw-9ov"/>
                                             <outlet property="sendMessageButton" destination="Qsp-Sv-AOr" id="JFu-ys-aNf"/>
                                             <segue destination="A9G-ag-okG" kind="show" identifier="friendDetailSegue" id="YB6-1S-6MA"/>
                                         </connections>
@@ -390,11 +398,20 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sIi-z7-dzj">
+                                <rect key="frame" x="295" y="205" width="51" height="30"/>
+                                <state key="normal" title="Update"/>
+                                <connections>
+                                    <action selector="saveFriend" destination="A9G-ag-okG" eventType="touchUpInside" id="p4W-D6-m0D"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="sIi-z7-dzj" firstAttribute="top" secondItem="fTr-Gq-kX6" secondAttribute="bottom" constant="22.5" id="0be-gQ-sa0"/>
                             <constraint firstItem="ZVx-11-JoQ" firstAttribute="leading" secondItem="fBo-nv-t93" secondAttribute="leading" constant="16" id="2Rb-8f-jvC"/>
                             <constraint firstItem="vaX-To-PCi" firstAttribute="width" secondItem="PvL-s3-9L8" secondAttribute="width" id="3OW-5x-JbD"/>
+                            <constraint firstAttribute="trailing" secondItem="sIi-z7-dzj" secondAttribute="trailing" constant="29" id="5Qs-WG-cMo"/>
                             <constraint firstItem="fTr-Gq-kX6" firstAttribute="width" secondItem="vaX-To-PCi" secondAttribute="width" id="5bg-d1-EB2"/>
                             <constraint firstItem="PvL-s3-9L8" firstAttribute="centerY" secondItem="ZVx-11-JoQ" secondAttribute="centerY" id="8Fe-xs-cND"/>
                             <constraint firstItem="h5h-OJ-TCP" firstAttribute="top" secondItem="Kke-Sr-uI6" secondAttribute="bottom" constant="25" id="Eey-iQ-eFd"/>
@@ -410,6 +427,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0zd-Zc-ssr"/>
+                    <connections>
+                        <outlet property="firstNameField" destination="PvL-s3-9L8" id="LW1-az-sUs"/>
+                        <outlet property="lastNameField" destination="vaX-To-PCi" id="Yz9-E6-MEI"/>
+                        <outlet property="phoneNumberField" destination="fTr-Gq-kX6" id="jgZ-0Y-ZQ4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J6b-Ur-7Qv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
