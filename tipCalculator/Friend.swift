@@ -50,13 +50,13 @@ class Friend: NSObject, NSCoding {
     }
     
     class func loadFriendData(friendIndex index: IndexPath?) -> Friend? {
-        print("this is index optional value: \(index)")
+        //print("this is index optional value: \(index)")
         guard let key = index else {
             print("key not available")
             return nil
         }
         let keyValue = String(describing: key)
-        print("this is key value: \(keyValue)")
+        //print("this is key value: \(keyValue)")
         guard let data = LocalSettings.loadDataSetting(forKey: keyValue) else {
             return nil
         }

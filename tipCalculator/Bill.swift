@@ -48,7 +48,7 @@ struct Bill {
             return nil
         }
         tipPercentage = tipPercentage / 100.0
-        print(tipPercentage)
+        //print(tipPercentage)
         return billAmountValue + (billAmountValue * tipPercentage)
     }
     var totalBillWithTipDollarAmount: String {

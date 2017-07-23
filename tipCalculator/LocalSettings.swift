@@ -22,7 +22,8 @@ final public class LocalSettings {
      
      */
     public class func loadDataSetting(forKey key: String) -> Data? {
-        return defaults.data(forKey: key)
+        let data = defaults.data(forKey: key)
+        return data
     }
     
     /// load a string from a key in the user default

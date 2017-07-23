@@ -16,7 +16,15 @@ struct tipStrings {
 
 extension String {
     var removeAllCharactersNotNumbers: String? {
-        return self.trimmingCharacters(in: CharacterSet(charactersIn: "0123456789").inverted)
+        let string = self
+        let charSet = CharacterSet(charactersIn: "0123456789.").inverted
+        guard let range = rangeOfCharacter(from: charSet) else {
+            return self.trimmingCharacters(in: charSet)
+        }
+        let newString = string.replacingCharacters(in: range, with: "")
+        return newString.trimmingCharacters(in: charSet)
+            
+        
     }
 }
 
@@ -36,8 +44,8 @@ class SettingViewController: UIViewController, UINavigationControllerDelegate {
         
     }
     
-    override func transition(from fromViewController: UIViewController, to toViewController: UIViewController, duration: TimeInterval, options: UIViewAnimationOptions = [], animations: (() -> Void)?, completion: ((Bool) -> Void)? = nil) {
-        dump(fromViewController)
+    override func viewWillDisappear(_ animated: Bool) {
+        
     }
 
     override func didReceiveMemoryWarning() {

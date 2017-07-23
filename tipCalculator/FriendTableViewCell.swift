@@ -12,6 +12,7 @@ class FriendTableViewCell: UITableViewCell {
 
     @IBOutlet weak var sendMessageButton: UIButton!
     @IBOutlet weak var friendLabel: UILabel!
+    @IBOutlet weak var friendTipLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,9 +25,7 @@ class FriendTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    @IBAction func SendMessage() {
-        
-    }
+    
     
     
     

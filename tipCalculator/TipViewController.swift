@@ -8,8 +8,9 @@
 
 import UIKit
 
-class TipViewController: UIViewController {
+class TipViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var billAmountField: UITextField!
+    let billAmountFieldLimit: Int = 6
     
     @IBOutlet weak var tipTotalAmountLabel: UILabel!
     
@@ -19,8 +20,15 @@ class TipViewController: UIViewController {
     
     @IBOutlet weak var partySizeStepper: UIStepper!
     
+    var bill: Bill?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.billAmountField.frame.height))
+        billAmountField.rightView = paddingView
+        billAmountField.rightViewMode = UITextFieldViewMode.always
+        billAmountField.delegate = self
+        billAmountField.becomeFirstResponder()
         
         // Do any additional setup after loading the view.
     }
@@ -30,9 +38,23 @@ class TipViewController: UIViewController {
         loadTips()
         
         
-        
     }
- 
+    
+    
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        let newLength = text.characters.count + string.characters.count - range.length
+        return newLength <= billAmountFieldLimit
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -46,14 +68,22 @@ class TipViewController: UIViewController {
         }
         
         vc.partySize = Int(self.partySizeStepper.value)
+        vc.loadFriends()
+        billAmountChanged(sender)
         vc.partyTableView.reloadData()
     }
     
     @IBAction func tipPercentageChanged(_ sender: Any) {
         billAmountChanged(sender)
+        guard let vc = self.parent?.childViewControllers[1] as? PartyViewController else {
+            return
+        }
+        vc.partyTableView.reloadData()
+        
     }
     
     @IBAction func billAmountChanged(_ sender: Any) {
+        
         let tipIndex = self.tipSegmentedControl.selectedSegmentIndex
         
         guard let tipValue = self.tipSegmentedControl.titleForSegment(at: tipIndex) else {
@@ -62,15 +92,21 @@ class TipViewController: UIViewController {
         guard let billValue = self.billAmountField.text else {
             return
         }
-        let bill = calculateTotals(billAmount: billValue, tipPercentage: tipValue)
+        self.bill = calculateTotals(billAmount: billValue, tipPercentage: tipValue)
         
         // Assign the values to to the UI
         
-        self.totalAmountDueLabel.text = bill?.totalBillWithTipDollarAmount
-        self.tipTotalAmountLabel.text = bill?.tipDollarAmount
+        self.totalAmountDueLabel.text = self.bill?.totalBillWithTipDollarAmount ?? "$0.00"
+        self.tipTotalAmountLabel.text = self.bill?.tipDollarAmount ?? "$0.00"
+        guard let vc = self.parent?.childViewControllers[1] as? PartyViewController else {
+            return
+        }
+        vc.partyTableView.reloadData()
         return
         
     }
+    
+    
     
     
     func calculateTotals(billAmount: String, tipPercentage: String) -> Bill? {
